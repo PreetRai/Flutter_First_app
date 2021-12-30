@@ -5,22 +5,23 @@ import './answer.dart';
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int qI;
-  final VoidCallback answerQuestion;
+  final Function answerQuestion;
 
   Quiz(
-      {required this.questions,
-      required this.answerQuestion,
-      required this.qI});
+      {@required this.questions,
+      @required this.answerQuestion,
+      @required this.qI});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Question(
-          questions[qI]['questionText'] as String,
+          questions[qI]['questionText'],
         ),
-        ...(questions[qI]['answers'] as List<String>).map((answer) {
-          return Answer(answerQuestion, answer);
+        ...(questions[qI]['answers'] as List<Map<String, Object>>)
+            .map((answer) {
+          return Answer(() => answerQuestion(answer['score']), answer['text']);
         }).toList()
       ],
     );
