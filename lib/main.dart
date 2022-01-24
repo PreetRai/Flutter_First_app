@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lead_management/result.dart';
 
+import 'package:lead_management/result.dart';
 import './quiz.dart';
 import './result.dart';
 
